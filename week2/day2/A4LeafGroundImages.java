@@ -21,16 +21,20 @@ public class A4LeafGroundImages {
 			driver.navigate().back();
 		
 			
-			//Boolean chkenabled = (driver.findElement(By.linkText("//img[@src='../images/abcd.jpg']")).isEnabled());
-			//System.out.println(chkenabled);
-			//driver.findElement(By.linkText("//img[@src='../images/abcd.jpg']")).click();
-			//String tit= driver.getTitle();
-			//driver.navigate().back();
-			//if (tit.equals("HTTP Status 404 – Not Found")) {
-			//System.out.println("Target Link is broken");
-			//}
-			//else
-			//System.out.println("Link is not broken");
+			Boolean chkenabled = (driver.findElement(By.xpath("//img[@src='../images/abcd.jpg']")).isEnabled());
+			System.out.println(chkenabled);
+			driver.findElement(By.xpath("//img[@src='../images/abcd.jpg']")).click();
+			String tit= driver.getTitle();
+			driver.navigate().back();
+			if (tit.equals("HTTP Status 404 – Not Found")) {
+			System.out.println("Target Link is broken");
+			}
+			else
+			System.out.println("Link is not broken");
+			System.out.println(tit);
+			
+			
+			//img[@src='../images/keyboard.png']
 			
 
 	}
