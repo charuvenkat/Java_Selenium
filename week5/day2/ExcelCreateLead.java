@@ -1,23 +1,32 @@
 package week5.day2;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.managers.SafariDriverManager;
 
-public class CreateLead  extends BaseLead {
+public class ExcelCreateLead  extends ExcelBaseLead {
 	
-	@Test(dataProvider ="sendData", priority = 2)
+	@BeforeClass
+	public void setFile() 
+	{
+		System.out.println("Started @Before class Reading/set  xl file in Lead class");
+		fileName= "CreateLead";	
+	}
+	
+	@Test(dataProvider ="sendData")
 	public  void createLead(String company,String fname,String lname) {
 	
-		System.out.println("Lead Creation \n");
+		System.out.println("Lead Creation  @Test started in Lead class\n");
 		driver.findElement(By.linkText("Create Lead")).click();
 		driver.findElement(By.id("createLeadForm_companyName")).sendKeys(company);
 		driver.findElement(By.id("createLeadForm_firstName")).sendKeys(fname);
@@ -33,18 +42,14 @@ public class CreateLead  extends BaseLead {
 		
 	}
 	@DataProvider
-	public String[][] sendData(){
-		String[][] data =new String[2][3];
+	public String[][] sendData() throws IOException{
 		
-		data[0][0] = "Nike";
-		data[0][1] = "Nandy";
-		data[0][2] = "Nile";
-
-		data[1][0] = "Amzon";
-		data[1][1] = "Amir";
-		data[1][2] = "Khan";
-
-		return data;
+		
+		//String[][] data= ReadExcel.readData();
+		//return data;
+		System.out.println("@Dataprovider started in Lead class");
+		return ReadExcel.readData("CreateLead");
+		
 	}
 	
 }

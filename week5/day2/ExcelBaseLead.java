@@ -17,20 +17,21 @@ import com.beust.jcommander.Parameter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.managers.SafariDriverManager;
 
-public class BaseLead {
+public class ExcelBaseLead {
 	
 	public ChromeDriver driver;
+	public String fileName;
 	
+
 	@Parameters({"username","password"})
-	@BeforeMethod
-	public  void beforemethod(String user, String pswd) {
+	@BeforeMethod(alwaysRun = true)
 	
+	public void beforeMethod(String user, String pswd) {
 		
+		System.out.println("started @Before method in BaseLead class");
+	
 		WebDriverManager.chromedriver().setup();
-	
-		
 		driver=new ChromeDriver();
-		
 		
 		driver.get("http://leaftaps.com/opentaps/control/main");
 		
@@ -47,6 +48,7 @@ public class BaseLead {
 
 	@AfterMethod
 	public void afterMethod() {
+		System.out.println("end @aftermethod in BaseLead class");
 		driver.close();
 	}
 }

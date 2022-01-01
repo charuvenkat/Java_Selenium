@@ -1,22 +1,29 @@
 package week5.day2;
 
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.safari.SafariDriver;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import io.github.bonigarcia.wdm.managers.SafariDriverManager;
 
-public class FindLead  extends BaseLead{
+public class ExcelFindLead  extends ExcelBaseLead{
 	
-	@Test(dataProvider ="sendData", priority = 1)
-	public void findLead( String fname) throws InterruptedException {
-		
+
+	@BeforeClass
+	public void setFile() 
+	{
+		fileName = "FindLead";	
+	}
+	@Test(dataProvider ="sendData")
+	public void findLead(String fname) throws InterruptedException {
 
 		System.out.println("Find Lead \n");
 		driver.findElement(By.linkText("Leads")).click();
@@ -27,18 +34,14 @@ public class FindLead  extends BaseLead{
 		driver.findElement(By.xpath("//button[text()='Find Leads']")).click();
 		Thread.sleep(1000);
 		
-		
 	}
 	@DataProvider
-	public String[][] sendData(){
-		String[][] data =new String[2][1];
+	public String[][] sendData() throws IOException{
+		//String[][] data= ReadExcel.readData();
+		//return data;
+		System.out.println("@Dataprovider started in Lead class");
+		return ReadExcel.readData("FindLead");
 		
-		data[0][0] = "Nandy";
-	
-		data[1][0] = "Amir";
-		
-
-		return data;
 	}
 
 }
