@@ -9,9 +9,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class StepDef {
+public class StepDef extends BaseClass{
 	
-	public ChromeDriver driver;
+	/*public ChromeDriver driver;
 	
 	@Given("open the chrome browser")
 	public void open_the_chrome_browser() {
@@ -22,7 +22,8 @@ public class StepDef {
 	@Given("load the application url")
 	public void load_the_application_url() {
 		driver.get("http://leaftaps.com/opentaps/control/main");	
-	}
+	}*/
+	
 	@Given("Enter the username as {string}")
 	public void enter_the_username_as_demosalesmanager(String username) {
 		driver.findElement(By.id("username")).sendKeys(username);
